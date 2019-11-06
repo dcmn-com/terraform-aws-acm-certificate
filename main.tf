@@ -10,7 +10,7 @@ resource "aws_acm_certificate" "default" {
 
   tags = "${merge(
     map(
-      Name, "${var.name}"
+      "Name", "${var.name}"
     ),
   "${var.tags}")}"
 }
