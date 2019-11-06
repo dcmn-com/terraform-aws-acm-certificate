@@ -13,7 +13,6 @@ resource "aws_acm_certificate" "default" {
       Name, "${var.name}"
     ),
   "${var.tags}")}"
-
 }
 
 resource "aws_route53_record" "default" {

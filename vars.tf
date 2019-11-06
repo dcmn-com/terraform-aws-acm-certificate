@@ -22,6 +22,5 @@ variable "alternative_domain_names" {
 variable "tags" {
   type        = "map"
   description = "https://docs.aws.amazon.com/ARG/latest/userguide/tagging-resources.html"
-  default = {
-  }
+  default     = {}
 }
