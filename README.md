@@ -16,3 +16,7 @@ A Terraform module to create an Amazon Web Services (AWS) ACM certificate
 | Name | Description           |
 | ---- | --------------------- |
 | arn  | ACM certificate's arn |
+
+## Maintainers:
+* @v47
+* @dron22
