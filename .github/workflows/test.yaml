@@ -1,38 +1,21 @@
 name: "Terraform Validation"
 on:
   - push
+
 jobs:
-  example:
-    name: "Terraform"
+  build:
+    name: Lint Code Base
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout"
-        uses: actions/checkout@master
-      - name: "Format"
-        uses: hashicorp/terraform-github-actions@master
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v1.3.2
         with:
-          tf_actions_version: 0.12.13
-          tf_actions_subcommand: "fmt"
-          tf_actions_working_dir: "."
-          tf_actions_comment: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: "Init"
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.12.13
-          tf_actions_subcommand: "init"
-          tf_actions_working_dir: "."
-          tf_actions_comment: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: "Validate"
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.12.13
-          tf_actions_subcommand: "validate"
-          tf_actions_working_dir: "."
-          tf_actions_comment: true
+          terraform_version: 0.15.4
+      - name: Init
+        run: terraform init -backend=false
+      - name: Lint
+        run: terraform validate
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TF_VAR_name: "name"
