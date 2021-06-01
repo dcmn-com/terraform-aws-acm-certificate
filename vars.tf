@@ -14,13 +14,13 @@ variable "domain_name" {
 }
 
 variable "alternative_domain_names" {
-  type        = list
+  type        = list(string)
   description = "Alternative domain names for which will be issued certificate"
   default     = []
 }
 
 variable "tags" {
-  type        = map
+  type        = map(string)
   description = "https://docs.aws.amazon.com/ARG/latest/userguide/tagging-resources.html"
   default     = {}
 }
