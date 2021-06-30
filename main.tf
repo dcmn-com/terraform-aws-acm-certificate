@@ -10,7 +10,7 @@ resource "aws_acm_certificate" "default" {
 
   tags = merge(
     {
-      "Name"=var.name
+      "Name" = var.name
     },
   var.tags)
 }
@@ -23,11 +23,13 @@ resource "aws_route53_record" "default" {
       type   = e.resource_record_type
     }
   }
-  name    = each.value.name
-  type    = each.value.type
-  records = [each.value.record]
-  ttl     = 60
-  zone_id =  data.aws_route53_zone.default.id
+
+  allow_overwrite = true
+  name            = each.value.name
+  type            = each.value.type
+  records         = [each.value.record]
+  ttl             = 60
+  zone_id         = data.aws_route53_zone.default.id
 }
 
 resource "aws_acm_certificate_validation" "default" {
